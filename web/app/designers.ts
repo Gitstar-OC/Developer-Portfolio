@@ -60,7 +60,7 @@ export const generatePlaceholderDesigners = (count: number): Designer[] => {
 // Combine real and placeholder designers
 export const getAllDesigners = (placeholderCount = 15): Designer[] => {
   return [...designers, 
-    ...generatePlaceholderDesigners(placeholderCount)
+    // ...generatePlaceholderDesigners(placeholderCount)
   
   ]
 }

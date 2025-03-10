@@ -66,7 +66,7 @@ function DesignerItem({ designer }: { designer: Designer }) {
   const twitterUrl = `https://twitter.com/${twitter}`
 
   return (
-    <div className="w-full py-3 px-4 rounded-md transition-colors duration-200 hover:bg-black/5 dark:hover:bg-white/5">
+    <div className="w-full py-3 px-4 rounded-md transition-colors group duration-200 hover:bg-black/5 dark:hover:bg-white/5">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-4">
           {/* Image without link */}
@@ -80,7 +80,7 @@ function DesignerItem({ designer }: { designer: Designer }) {
           </Link>
         </div>
 
-        <Link href={portfolio} className="text-black/60 dark:text-white/60 hover:underline text-sm">
+        <Link href={portfolio} className="text-black/60 dark:text-white/60 transition-colors duration-300 hover:underline group-hover:text-black group-hover:dark:text-white text-base">
           {portfolioUrl}
         </Link>
       </div>
