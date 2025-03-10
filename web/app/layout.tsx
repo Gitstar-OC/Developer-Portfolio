@@ -3,9 +3,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
-  title: "Great Desfolio",
-  description: "List of great engineers and their portfolio sites",
-    generator: 'v0.dev'
+  title: "Good Engineers Portfolio",
+  description: "List of great engineers and their websites",
 }
 
 export default function RootLayout({
