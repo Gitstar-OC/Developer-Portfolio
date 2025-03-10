@@ -38,6 +38,13 @@ export const designers: Designer[] = [
     portfolio: "https://mxstbr.com",
     github: "mxstbr",
   },
+  {
+    name: "Chloe Yan", 
+    twitter: "https://x.com/_chloeyan", 
+    portfolio: "https://chloeyan.me",  
+    github: "chloe-yan"
+
+  }
 ]
 
 // Generate more designers for scrolling effect
@@ -52,6 +59,9 @@ export const generatePlaceholderDesigners = (count: number): Designer[] => {
 
 // Combine real and placeholder designers
 export const getAllDesigners = (placeholderCount = 15): Designer[] => {
-  return [...designers, ...generatePlaceholderDesigners(placeholderCount)]
+  return [...designers, 
+    ...generatePlaceholderDesigners(placeholderCount)
+  
+  ]
 }
 
