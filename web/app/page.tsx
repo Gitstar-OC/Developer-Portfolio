@@ -163,12 +163,12 @@ export default function DesignerProfiles() {
   // Set up smooth scroll behavior
   useEffect(() => {
     let animationFrameId
-    let currentTransform = headingHeight + 350 // Start even further below the heading
+    let currentTransform = headingHeight + 50 // Changed from 350 to 50 to match the inline style
 
     const handleScroll = () => {
       const scrollY = window.scrollY
       // Calculate target position - slower scroll effect by dividing by 2
-      const targetTransform = Math.max(0, headingHeight + 350 - scrollY / 2)
+      const targetTransform = Math.max(0, headingHeight + 50 - scrollY / 2)
 
       // Update scroll progress for other animations
       setScrollProgress(Math.min(1, scrollY / 600))
@@ -202,7 +202,7 @@ export default function DesignerProfiles() {
 
     // Initial positioning
     if (contentRef.current) {
-      contentRef.current.style.transform = `translateY(${headingHeight + 350}px)`
+      contentRef.current.style.transform = `translateY(${headingHeight + 50}px)` // Changed from 350 to 50
     }
 
     return () => {
@@ -263,7 +263,7 @@ export default function DesignerProfiles() {
       <div
         ref={contentRef}
         className="relative z-20 min-h-[200vh] w-full will-change-transform"
-        style={{ transform: `translateY(${headingHeight + 350}px)` }}
+        style={{ transform: `translateY(${headingHeight + 50}px)` }}
       >
         <div className="max-w-[800px] w-full mx-auto pt-20 pb-64 px-8 bg-[#f9f9f9] dark:bg-[#111] shadow-xl border border-black/5 dark:border-white/5">
           <div className="mb-8 text-black/60 dark:text-white/60 text-lg w-full">
