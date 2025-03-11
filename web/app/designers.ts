@@ -3,7 +3,7 @@ export interface Designer {
   name: string;
   twitter: string; // Just the username without the URL
   portfolio: string;
-  github?: string | null; // Optional GitHub username
+  github?: string | null; 
 }
 
 // List of designers
@@ -190,4 +190,16 @@ export const getAllDesigners = (placeholderCount = 15): Designer[] => {
     // ...generatePlaceholderDesigners(placeholderCount)
   ];
 };
+
+
+
+//
+
+// {
+//   name: "Sara Soueidan",
+//   twitter: "SaraSoueidan",
+//   portfolio: "https://www.sarasoueidan.com",
+//   github: "sarasoueidan",
+// },
+
 

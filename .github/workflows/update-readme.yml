@@ -2,73 +2,37 @@ name: Update README
 
 on:
   push:
-    branches: [ main, master ]
-    paths:
-      - '**/designers.ts'  # Trigger when the designers data file changes
+    branches:
+      - main
   pull_request:
-    branches: [ main, master ]
-    paths:
-      - '**/designers.ts'  # Trigger when the designers data file changes
+    branches:
+      - main
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          fetch-depth: 0
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      
-      - name: Update README
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update script
+        run: ts-node scripts/update-readme.ts
+
+      - name: Commit changes
         run: |
-          # Create a script to read designers data and update README
-          cat > update-readme.js << 'EOF'
-          const fs = require('fs');
-          const path = require('path');
-          
-          // Find the designers file
-          const designersFile = findFile('designers.ts');
-          
-          function findFile(filename) {
-            const files = fs.readdirSync('.', { recursive: true });
-            for (const file of files) {
-              if (file.endsWith(filename)) return file;
-            }
-            return null;
-          }
-          
-          // Execute the file to get the designers array
-          const designersData = require('./' + designersFile);
-          const designers = designersData.designers;
-          
-          // Read the README file
-          let readmeFile = findFile('README.md');
-          let readme = fs.readFileSync(readmeFile, 'utf8');
-          
-          // Create the new list of designers for the README
-          const designersList = designers.map(designer => {
-            return ` - [${designer.name}](https://x.com/${designer.twitter}) - [${new URL(designer.portfolio).hostname}](${designer.portfolio})`;
-          }).join('\n');
-          
-          // Replace the list in the README
-          const startMarker = '# Great_Desfolio\nList of great engineers and their portfolio sites. \n\n';
-          const newReadme = startMarker + designersList;
-          
-          // Write the updated README
-          fs.writeFileSync(readmeFile, newReadme);
-          console.log('README updated successfully!');
-          EOF
-          
-          node update-readme.js
-      
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email 'actions@github.com'
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update README with latest designers"
+          git commit -m "Update README.md with latest designer information" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
