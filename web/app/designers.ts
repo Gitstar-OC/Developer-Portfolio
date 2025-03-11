@@ -168,6 +168,12 @@ export const designers: Designer[] = [
     twitter: "shuding_",  
     portfolio: "https://shud.in",
     github: "shuding"
+  }, 
+  {
+    name: "Elissa Martial", 
+    twitter: "elissafied", 
+    portfolio: "https://elissamartial.com",  
+    github: ""
   }
 ];
 
