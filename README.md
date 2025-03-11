@@ -2,12 +2,6 @@
 
 List of great engineers and their portfolio sites. 
 
-<<<<<<< HEAD
-<div style="font-family: Arial, sans-serif; max-width: 600px;">
-<!-- Designer entries will be automatically updated by the workflow -->
-</div>
-
-=======
  - [Emil Kowalski](https://x.com/emilkowalski_) - [emilkowal.ski](https://emilkowal.ski)
  - [Rauno Freiberg](https://x.com/raunofreiberg) - [rauno.me](https://rauno.me)
  - [Lee Robinson](https://x.com/leeerob) - [leerob.io](https://leerob.io)
@@ -35,4 +29,3 @@ List of great engineers and their portfolio sites.
  - [Heydon Pickering](https://x.com/heydonworks) - [heydonworks.com](https://heydonworks.com)
  - [Maggie Appleton](https://x.com/Mappletons) - [maggieappleton.com](https://maggieappleton.com)
  - [Shu Ding](https://x.com/shuding_) - [shud.in](https://shud.in)
->>>>>>> 0508d2240f6d3ef9df1a7ecb2b435c66b1240a1f
