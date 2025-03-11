@@ -1,4 +1,3 @@
-// Designer data type
 export interface Designer {
   name: string;
   twitter: string; // Just the username without the URL
@@ -6,7 +5,6 @@ export interface Designer {
   github?: string | null; 
 }
 
-// List of designers
 export const designers: Designer[] = [
   {
     name: "Emil Kowalski",
@@ -173,7 +171,7 @@ export const designers: Designer[] = [
   }
 ];
 
-// Generate more designers for scrolling effect
+// simple placeholders : ) 
 export const generatePlaceholderDesigners = (count: number): Designer[] => {
   return Array.from({ length: count }).map((_, index) => ({
     name: `Designer ${index + designers.length + 1}`,
@@ -183,23 +181,9 @@ export const generatePlaceholderDesigners = (count: number): Designer[] => {
   }));
 };
 
-// Combine real and placeholder designers
 export const getAllDesigners = (placeholderCount = 15): Designer[] => {
   return [
     ...designers,
     // ...generatePlaceholderDesigners(placeholderCount)
   ];
 };
-
-
-
-//
-
-// {
-//   name: "Sara Soueidan",
-//   twitter: "SaraSoueidan",
-//   portfolio: "https://www.sarasoueidan.com",
-//   github: "sarasoueidan",
-// },
-
-
