@@ -29,3 +29,4 @@ List of great engineers and their portfolio sites.
  - [Heydon Pickering](https://x.com/heydonworks) - [heydonworks.com](https://heydonworks.com)
  - [Maggie Appleton](https://x.com/Mappletons) - [maggieappleton.com](https://maggieappleton.com)
  - [Shu Ding](https://x.com/shuding_) - [shud.in](https://shud.in)
+ - [Elissa Martial](https://x.com/elissafied) - [elissamartial.com](https://elissamartial.com)
