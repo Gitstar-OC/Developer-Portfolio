@@ -2,37 +2,136 @@ name: Update README
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - main
+    branches: [ main, master ]
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run update script
-        run: ts-node scripts/update-readme.ts
-
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README.md with latest designer information" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Update README
+      run: |
+        # Create a script to read designers data and update README
+        cat > update-readme.js << 'EOF'
+        const fs = require('fs');
+        const path = require('path');
+        
+        // Print current directory and list files for debugging
+        console.log('Current directory:', process.cwd());
+        console.log('Files in directory:', fs.readdirSync('.'));
+        
+        // Find the designers file with more robust path handling
+        function findDesignersFile() {
+          const possiblePaths = [
+            './web/app/designers.ts',
+            './app/designers.ts',
+            './designers.ts'
+          ];
+          
+          for (const filePath of possiblePaths) {
+            if (fs.existsSync(filePath)) {
+              console.log('Found designers file at:', filePath);
+              return filePath;
+            }
+          }
+          
+          // If not found in predefined paths, search recursively
+          console.log('Searching recursively for designers.ts...');
+          return findFileRecursive('.', 'designers.ts');
+        }
+        
+        function findFileRecursive(dir, filename) {
+          const files = fs.readdirSync(dir, { withFileTypes: true });
+          
+          for (const file of files) {
+            if (file.isDirectory() && !file.name.startsWith('.') && file.name !== 'node_modules') {
+              const found = findFileRecursive(path.join(dir, file.name), filename);
+              if (found) return found;
+            } else if (file.name === filename) {
+              return path.join(dir, file.name);
+            }
+          }
+          
+          return null;
+        }
+        
+        // Find README file
+        function findReadmeFile() {
+          if (fs.existsSync('./README.md')) {
+            return './README.md';
+          }
+          return findFileRecursive('.', 'README.md');
+        }
+        
+        const designersFilePath = findDesignersFile();
+        if (!designersFilePath) {
+          console.error('Could not find designers.ts file');
+          process.exit(1);
+        }
+        
+        const readmeFilePath = findReadmeFile();
+        if (!readmeFilePath) {
+          console.error('Could not find README.md file');
+          process.exit(1);
+        }
+        
+        console.log(`Using designers file: ${designersFilePath}`);
+        console.log(`Using README file: ${readmeFilePath}`);
+        
+        // Read and parse the designers.ts file content
+        const fileContent = fs.readFileSync(designersFilePath, 'utf8');
+        
+        // Extract designer objects using regex
+        const designerPattern = /{\\s*name:\\s*["']([^"']+)["'],\\s*twitter:\\s*["']([^"']+)["'],\\s*portfolio:\\s*["']([^"']+)["']/g;
+        const designers = [];
+        let match;
+        
+        while ((match = designerPattern.exec(fileContent)) !== null) {
+          designers.push({
+            name: match[1],
+            twitter: match[2],
+            portfolio: match[3]
+          });
+        }
+        
+        console.log(`Found ${designers.length} designers`);
+        
+        if (designers.length === 0) {
+          console.error('No designers found in the file. Check regex pattern.');
+          process.exit(1);
+        }
+        
+        // Read the README file
+        let readme = fs.readFileSync(readmeFilePath, 'utf8');
+        
+        // Create the new list of designers for the README
+        const designersList = designers.map(designer => {
+          const portfolioUrl = new URL(designer.portfolio);
+          return ` - [${designer.name}](https://x.com/${designer.twitter}) - [${portfolioUrl.hostname}](${designer.portfolio})`;
+        }).join('\n');
+        
+        // Replace the list in the README
+        const startMarker = '# Great_Desfolio\n\nList of great engineers and their portfolio sites. \n\n';
+        const newReadme = startMarker + designersList;
+        
+        // Write the updated README
+        fs.writeFileSync(readmeFilePath, newReadme);
+        console.log('README updated successfully!');
+        EOF
+        
+        node update-readme.js
+        
+    - name: Commit and push if changed
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add README.md
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update README with latest designers" && git push)
