@@ -23,7 +23,7 @@ List of great engineers and their portfolio sites.
  - [Jen Simmons](https://x.com/jensimmons) - [jensimmons.com](https://jensimmons.com)
  - [Rachel Andrew](https://x.com/rachelandrew) - [rachelandrew.co.uk](https://rachelandrew.co.uk)
  - [David Walsh](https://x.com/davidwalshblog) - [davidwalsh.name](https://davidwalsh.name)
- - [Jhey](https://x.com/jh3yy) - [jhey.dev](https://jhey.dev)
+ - [Jhey](https://x.com/jh3yy) - [codepen.io](http://codepen.io/jh3y)
  - [Una Kravets](https://x.com/Una) - [una.im](https://una.im)
  - [Andy Bell](https://x.com/belldotbz) - [andy-bell.co.uk](https://andy-bell.co.uk)
  - [Heydon Pickering](https://x.com/heydonworks) - [heydonworks.com](https://heydonworks.com)
