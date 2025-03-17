@@ -136,7 +136,7 @@ export const designers: Designer[] = [
   {
     name: "Jhey", 
     twitter: "jh3yy", 
-    portfolio: "http://codepen.io/jh3y"
+    portfolio: "http://codepen.io/jh3y", 
     github: "jh3y"
   }, 
   {
