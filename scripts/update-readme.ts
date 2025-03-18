@@ -57,7 +57,7 @@ const updateReadme = (designersHtml: string): void => {
     fs.writeFileSync(readmeFilePath, updatedContent, 'utf-8');
   } else {
     // If no existing section, append to the end or at a specific marker
-    const startMarker = '# Great_Desfolio\n\nList of great engineers and their portfolio sites. \n\n';
+    const startMarker = '# Developer Portfolio\n\nList of great engineers and their sites. \n\n';
     const updatedContent = readmeContent.includes(startMarker)
       ? readmeContent.replace(startMarker, startMarker + designersHtml)
       : readmeContent + '\n\n' + designersHtml;
