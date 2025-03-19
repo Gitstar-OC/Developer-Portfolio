@@ -107,7 +107,7 @@ jobs:
         }).join('\n');
         
         // Replace the list in the README
-        const startMarker = '# Great_Desfolio\n\nList of great engineers and their portfolio sites. \n\n';
+        const startMarker = '# Developers Portfolio Sites\n\nList of great engineers and their portfolio sites. \n\n';
         const newReadme = startMarker + designersList;
         
         // Write the updated README
