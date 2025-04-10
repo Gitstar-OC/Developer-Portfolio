@@ -108,25 +108,6 @@ export const designers: Designer[] = [
     portfolio: "https://bruno-simon.com",
     github: "brunosimon",
   },
-
-  {
-    name: "Chris Coyier",
-    twitter: "chriscoyier",
-    portfolio: "https://chriscoyier.net",
-    github: "chriscoyier",
-  },
-  {
-    name: "Jen Simmons",
-    twitter: "jensimmons",
-    portfolio: "https://jensimmons.com",
-    github: "jensimmons",
-  },
-  {
-    name: "Rachel Andrew",
-    twitter: "rachelandrew",
-    portfolio: "https://rachelandrew.co.uk",
-    github: "rachelandrew",
-  },
   {
     name: "David Walsh",
     twitter: "davidwalshblog",
@@ -139,12 +120,6 @@ export const designers: Designer[] = [
     portfolio: "http://codepen.io/jh3y", 
     github: "jh3y"
   }, 
-  {
-    name: "Una Kravets",
-    twitter: "Una",
-    portfolio: "https://una.im",
-    github: "una",
-  },
   {
     name: "Andy Bell",
     twitter: "belldotbz",
